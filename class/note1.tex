@@ -1,0 +1,15 @@
+\chapter{Función Gamma}
+\dfn{Definición}{
+La función Gamma es una extensión de la función factorial a los números complejos. Se denota como $\Gamma(n)$ y se define para $n > 0$ como:
+$$
+\Gamma(n) = \int_0^\infty t^{n-1} e^{-t} dt
+$$
+Para los números enteros positivos, se cumple que $\Gamma(n) = (n-1)!$.
+}
+
+\section{Propiedades}
+\begin{itemize}
+    \item \textbf{Recursión:} $\Gamma(n) = (n-1)\Gamma(n-1)$ para $n > 1$.
+    \item \textbf{Valor en 1:} $\Gamma(1) = 1$.
+    \item \textbf{Valor en 1/2:} $\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}$.
+\end{itemize}
