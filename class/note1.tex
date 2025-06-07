@@ -1,15 +1,269 @@
-\chapter{Función Gamma}
+\chapter{Función Gamma (Factorial)}
+\section{Definición}
 \dfn{Definición}{
-La función Gamma es una extensión de la función factorial a los números complejos. Se denota como $\Gamma(n)$ y se define para $n > 0$ como:
-$$
-\Gamma(n) = \int_0^\infty t^{n-1} e^{-t} dt
-$$
-Para los números enteros positivos, se cumple que $\Gamma(n) = (n-1)!$.
+	La función gamma de Euler se define para \( \operatorname{Re}(z) > 0 \) por la integral impropia:
+
+	\[
+		\Gamma(z) := \int_0^\infty t^{z-1} e^{-t} \, \dd{t}
+	\]
+
+	Es una extensión del factorial, pues para \( n \in \mathbb{N} \):
+
+	\[
+		\Gamma(n) = (n-1)!
+	\]
+
 }
 
-\section{Propiedades}
+También puede ser equivalente a:
+$$
+	\Gamma(z) := x^z \int_0^\infty t^{z-1} e^{-kt} \, \dd{t}, \quad (\Re z >0, \Re k >0)
+$$
+
+
+\mprop{}{	Valor en 1: \( \Gamma(1) = 1 \).}
+
+\begin{proof}
+	Usamos la definición de la función gamma de Euler, sustituyendo $z = 1$, se tiene:
+	\[
+		\Gamma(1) = \int_0^{\infty} t^{1-1} e^{-t} \, \dd{t} = \int_0^{\infty} e^{-t} \, \dd{t} = \left[ -e^{-t} \right]_0^{\infty} = 0 - (-1) = 1.
+	\]
+	Por lo tanto,
+	\[
+		\Gamma(1) = 1. \qedhere
+	\]
+\end{proof}
+
+\mprop{Relación funcional de la función Gamma}{
+	$$\Gamma(z+1) = z \, \Gamma(z) $$
+}
+
+
+\begin{proof}
+	Usamos la definición:
+	\[
+		\Gamma(z+1) = \int_0^\infty t^z e^{-t} \, \dd{t}.
+	\]
+	Aplicamos integración por partes con:
+	\[
+		u = t^z \Rightarrow du = z t^{z-1} \dd{t}, \quad dv = e^{-t} \dd{t} \Rightarrow v = -e^{-t}.
+	\]
+	Entonces:
+	\[
+		\Gamma(z+1) = \left[ -t^z e^{-t} \right]_0^\infty + \int_0^\infty z t^{z-1} e^{-t} \, \dd{t}.
+	\]
+	El término evaluado en los extremos es cero, ya que:
+	\[
+		\lim_{t \to \infty} t^z e^{-t} = 0 \quad \text{y} \quad \lim_{t \to 0^+} t^z e^{-t} = 0 \quad \text{para } \operatorname{Re}(z) > 0.
+	\]
+	Por tanto,
+	\[
+		\Gamma(z+1) = z \int_0^\infty t^{z-1} e^{-t} \, \dd{t} = z \, \Gamma(z). \qedhere
+	\]
+\end{proof}
+
+\nt{De la recurrencia,
+	\begin{align*}
+		\Gamma(n+z) & = (n-1+z)(n-2+z) \ldots (1+z) \Gamma(1+z) \\
+		            & =(n-1+z)(n-2+z) \ldots (1+z) z!           \\
+		            & = (n-1+z)!
+	\end{align*}}
+\ex{Encuentre el valor de $\Gamma(\frac{5}{2})$ si $\Gamma(\frac{1}{2}) = \sqrt{\pi}$}{
+
+	\begin{align*}
+		\Gamma\qty(\frac{5}{2}) & = \Gamma\qty(1+\frac{3}{2})  =  \frac{3}{2} \cdot \Gamma\qty(\frac{3}{2}) =  \frac{3}{2} \cdot\pqty{ \Gamma\qty(1+\frac{1}{2}) } = \\
+		                        & =  \frac{3}{2} \cdot\pqty{\frac{1}{2}\cdot \Gamma\qty(\frac{1}{2}) } = \frac{3}{4} \cdot \Gamma\qty(\frac{1}{2})                   \\
+		                        & = \frac{3}{4} \sqrt{\pi}
+	\end{align*}
+}
+
+
+\mprop{Producto de Weierstrass}{
+	La función gamma admite la representación infinita:
+
+	\[
+		\frac{1}{\Gamma(z)} = z e^{\gamma z} \prod_{n=1}^\infty \left(1 + \frac{z}{n} \right) e^{-z/n}, \quad z \in \mathbb{C} \setminus \{0, -1, -2, \dots\}
+	\]
+
+	donde la constante \( \gamma \), llamada \textbf{constante de Euler–Mascheroni}, se define como:
+
+	\[
+		\gamma := \lim_{m \to \infty} \left( \sum_{k=1}^m \frac{1}{k} - \ln m \right) \approx 0.5772\ 1566\ 4900\ldots
+	\]
+}
+
+\mprop{Fórmula de reflexión de Euler}{
+	Para todo \( z \notin \mathbb{Z} \), se cumple:
+	\[
+		\Gamma(z) \Gamma(1 - z) = \frac{\pi}{\sin(\pi z)}.
+	\]}
+
+\begin{proof}
+	Utilizamos la fórmula del producto de Weierstrass para la función Gamma:
+	\[
+		\frac{1}{\Gamma(z)} = z e^{\gamma z} \prod_{n=1}^\infty \left(1 + \frac{z}{n} \right) e^{-z/n},
+	\]
+
+	Entonces:
+	\[
+		\Gamma(z) = \frac{1}{z} e^{-\gamma z} \prod_{n=1}^\infty \left(1 + \frac{z}{n} \right)^{-1} e^{z/n}.
+	\]
+
+	Análogamente:
+	\[
+		\Gamma(1 - z) = \frac{1}{1 - z} e^{-\gamma(1 - z)} \prod_{n=1}^\infty \left(1 + \frac{1 - z}{n} \right)^{-1} e^{(1 - z)/n}.
+	\]
+
+	Además \( \pi / \sin(\pi z) \), es igual a:
+	\[
+		\frac{\pi}{\sin(\pi z)} = \frac{1}{z} \prod_{n=1}^\infty \left(1 - \frac{z^2}{n^2} \right)^{-1}.
+	\]
+
+	\[
+		\Rightarrow \Gamma(z)\Gamma(1 - z) = \frac{\pi}{\sin(\pi z)}.
+		\qedhere
+	\]
+\end{proof}
+
+\ex{$\Gamma(\frac{1}{2}) = \sqrt{\pi}$}{
+	Haciendo $z = \frac{1}{2}$ en la reflexión de Euler
+	\begin{align*}
+		\Gamma\qty(\frac{1}{2}) \Gamma\qty(1-\frac{1}{2}) & = \frac{\pi}{\sin(\pi \cdot \frac{1}{2})} \\
+		\pqty{\Gamma\qty(\frac{1}{2})}^2                  & = \pi                                     \\
+		\Gamma\qty(\frac{1}{2})                           & = \sqrt{\pi}
+	\end{align*}
+}
+
+\section{ Otras Propiedades Fundamentales}
+
 \begin{itemize}
-    \item \textbf{Recursión:} $\Gamma(n) = (n-1)\Gamma(n-1)$ para $n > 1$.
-    \item \textbf{Valor en 1:} $\Gamma(1) = 1$.
-    \item \textbf{Valor en 1/2:} $\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}$.
+
+
+	\item \textbf{Fórmula de Stirling (asimptótica):}
+	      \[
+		      \Gamma(z) \sim \sqrt{2\pi} z^{z - 1/2} e^{-z} \left( 1 + \frac{1}{12z} + \frac{1}{288z^2} - \cdots \right)
+	      \]
+	\item \textbf{Fórmula de duplicación de Legendre:}
+	      \[
+		      \Gamma(2z) = \frac{\Gamma(z)\Gamma\left(z + \tfrac{1}{2} \right)}{2^{1 - 2z} \sqrt{\pi}}
+	      \]
+
+	\item \textbf{Fórmula de triplicación:}
+
+	      \[
+		      \Gamma(3z) = \frac{3^{3z - \frac{1}{2}}}{2\pi} \, \Gamma(z) \, \Gamma\left(z + \frac{1}{3} \right) \, \Gamma\left(z + \frac{2}{3} \right)
+	      \]
+
+	\item \textbf{Fórmula de multiplicación de Gauss:}
+
+	      Para \( n \in \mathbb{N} \), se tiene:
+
+	      \[
+		      \Gamma(nz) = (2\pi)^{\frac{1-n}{2}} \, n^{nz - \frac{1}{2}} \prod_{k=0}^{n-1} \Gamma\left(z + \frac{k}{n} \right)
+	      \]
+
+	\item \textbf{Euler's Formula:}
+	      \[
+		      \Gamma(z) = \lim_{n \to \infty} \frac{n! \, n^z}{z (z+1) (z+2) \cdots (z+n)} = \lim_{n \to \infty} \frac{n! \, n^z}{\prod_{k=0}^{n} (z + k)}
+		      \quad \text{para } z \notin \{0, -1, -2, \dots\}
+	      \]
+
+
+	\item \textbf{Coeficiente binomial generalizado:}
+
+	      \[
+		      \binom{z}{w} = \frac{\Gamma(z+1)}{\Gamma(w+1)\Gamma(z-w+1)}
+		      \quad \text{para } z, w \in \mathbb{C} \setminus \mathbb{Z}_{< -1}
+	      \]
+
+	\item \textbf{Propiedades en el plano complejo:}
+
+	      \begin{align*}
+		      \Gamma(\overline{z})     & = \overline{\Gamma(z)}                                        \\
+		      \ln \Gamma(\overline{z}) & = \overline{\ln \Gamma(z)}                                    \\
+		      |\Gamma(x + i y)|        & \leq |\Gamma(x)| \quad \text{para } x > 0,\, y \in \mathbb{R} \\
+		      \arg \Gamma(z+1)         & = \arg \Gamma(z) + \arg z
+	      \end{align*}
+
+	\item \textbf{Serie de potencias de \( \ln \Gamma(1+z) \):}
+
+	      Para \( |z| < 1 \):
+
+	      \[
+		      \ln \Gamma(1 + z) = -\gamma z + \sum_{n=2}^\infty \frac{\zeta(n)}{n} (-z)^n
+	      \]
+
+	      donde \( \zeta(n) \) es la función zeta de Riemann.
+
+	\item \textbf{Expansión en serie de \( \dfrac{1}{\Gamma(z)} \):}
+
+	      Hay una expansión entera (ver proposición de Weierstrass),  también existe una expansión de tipo:
+
+	      \[
+		      \frac{1}{\Gamma(z)} = \sum_{n=1}^\infty c_n z^n, \quad \text{con } c_n \in \mathbb{R}
+		      \quad \text{(convergente en } \mathbb{C})
+	      \]
+
+	\item \textbf{Fórmula de Stirling:}
+
+	      Para \( |z| \to \infty \), \( |\arg z| < \pi \):
+
+	      \[
+		      \Gamma(z) \sim \sqrt{2\pi} \, z^{z - \frac{1}{2}} e^{-z} \left( 1 + \frac{1}{12z} + \frac{1}{288z^2} - \frac{139}{51840z^3} + \cdots \right)
+	      \]
+	\item \textbf{Desarrollo asintótico de \( \ln \Gamma(z) \):}
+
+	      \[
+		      \ln \Gamma(z) \sim z \ln z - z + \frac{1}{2} \ln(2\pi) + \sum_{n=1}^\infty \frac{B_{2n}}{2n(2n-1) z^{2n-1}}
+		      \quad \text{para } |z| \to \infty,\, |\arg z| < \pi
+	      \]
+
+	      donde \( B_{2n} \) son los números de Bernoulli.
+
+
+
 \end{itemize}
+
+\section{Ejercicios }
+
+\subsection{Ejercicios Resueltos}
+\begin{enumerate}
+	\item Demostrar:
+	      \[
+		      \Gamma\left(\frac{1+i}{2}\right) \Gamma\left(\frac{1-i}{2}\right)= \sqrt{\pi} \sech(\frac{\pi}{2})
+	      \]
+\end{enumerate}
+
+
+\subsection{Ejercicios Propuestos}
+
+\begin{enumerate}
+
+	\item Evaluar la siguiente integral,
+	      \[
+		      \int_0^\infty x^n e^{-\lambda x} \, dx
+		      \quad \textbf{Respuesta: } \frac{\Gamma(n+1)}{\lambda^{n+1}}
+	      \]
+
+	\item Evaluar:
+	      \[
+		      \int_0^1 (-\ln t)^s \, \dd{t}
+		      \quad \textbf{Respuesta: } \Gamma(s+1)
+	      \]
+
+	\item Demostrar que:
+	      \[
+		      \int_0^\infty e^{-x^2} \, dx = \frac{\sqrt{\pi}}{2}
+		      \quad \text{usando } \Gamma\left(\frac{1}{2}\right)
+	      \]
+
+
+	\item Mostrar que:
+	      \[
+		      \int_0^\infty \frac{t^{z-1}}{1 + t} \, \dd{t} = \pi / \sin(\pi z)
+		      \quad \text{para } 0 < \operatorname{Re}(z) < 1
+	      \]
+
+\end{enumerate}
+
+\section{Función Beta}
