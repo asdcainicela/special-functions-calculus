@@ -1,11 +1,15 @@
 \chapter{Función Gamma (Factorial)}
 \section{Definición}
 \dfn{Definición}{
-	La función gamma de Euler se define para \( \operatorname{Re}(z) > 0 \) por la integral impropia:
+	La función gamma de Euler se define   por la integral impropia. 	Si $\Re(z)>-1$ entonces, la Función Gamma converge absolutamente:
 
 	\[
 		\Gamma(z) := \int_0^\infty t^{z-1} e^{-t} \, \dd{t}
 	\]
+
+	$$
+		\Gamma(z+1)=\int_0^{\infty} t^{z } e^{-t}  \dd{t} , \quad z \neq -1,-2,-3,\ldots
+	$$
 
 	Es una extensión del factorial, pues para \( n \in \mathbb{N} \):
 
@@ -20,7 +24,17 @@ $$
 	\Gamma(z) := x^z \int_0^\infty t^{z-1} e^{-kt} \, \dd{t}, \quad (\Re z >0, \Re k >0)
 $$
 
-
+\ex{}{
+	$$
+		\int_{0}^{\infty} t^{i+1}  e^{-t}dt=\int_{0}^{\infty} t^{(i+2)-1} e^{-t}dt=\Gamma(i+2)
+	$$
+	$$
+		\int_{0}^{\infty} t^{2} e^{-t}dt=\int_{0}^{\infty} t^{3-1} e^{-t}dt=\Gamma(3)=2!=2
+	$$
+	$$
+		\int_{0}^{\infty} t^{5/9} e^{-t}dt=\int_{0}^{\infty} t^{14/9-1} e^{-t}dt=\Gamma\left(\frac{14}{9} \right)
+	$$
+}
 \mprop{}{	Valor en 1: \( \Gamma(1) = 1 \).}
 
 \begin{proof}
@@ -37,7 +51,6 @@ $$
 \mprop{Relación funcional de la función Gamma}{
 	$$\Gamma(z+1) = z \, \Gamma(z) $$
 }
-
 
 \begin{proof}
 	Usamos la definición:
@@ -58,7 +71,7 @@ $$
 	\]
 	Por tanto,
 	\[
-		\Gamma(z+1) = z \int_0^\infty t^{z-1} e^{-t} \, \dd{t} = z \, \Gamma(z). \qedhere
+		\Gamma(z+1) = z \int_0^\infty t^{z-1} e^{-t} \, \dd{t} = z \, \Gamma(z), \qquad   \Re(z)>-1  \text{ y } \Re(z)\neq -1,-2,-3, \cdots \qedhere
 	\]
 \end{proof}
 
@@ -68,7 +81,35 @@ $$
 		            & =(n-1+z)(n-2+z) \ldots (1+z) z!           \\
 		            & = (n-1+z)!
 	\end{align*}}
-\ex{Encuentre el valor de $\Gamma(\frac{5}{2})$ si $\Gamma(\frac{1}{2}) = \sqrt{\pi}$}{
+
+\ex{}{	Simplifique la siguiente expresión
+
+	$$
+		\frac{\Gamma\left(\frac{5}{2} \right)\Gamma\left(\frac{9 }{7} \right)  }{\Gamma\left(\frac{1}{2} \right)\Gamma\left(\frac{2 }{7} \right) }
+	$$
+
+	\resolucion
+
+	Sabemos por la Formula de Reducción $\Gamma(z+1)=z \Gamma(z)	$
+
+	$$
+		\Gamma\left( \frac{5}{2}\right) =\Gamma\left(1+ \frac{3}{2}\right) =\frac{3}{2}\Gamma\left(\frac{3}{2}\right) = \frac{3}{2}\Gamma\left(1+\frac{1}{2}\right)=\frac{3}{2} \frac{1}{2} \Gamma\left(\frac{1}{2}\right)
+	$$
+
+	$$
+		\Gamma\left( \frac{9}{7}\right) =\Gamma\left(1+ \frac{2}{7}\right) =\frac{2}{7}\Gamma\left(\frac{2}{7}\right)
+	$$
+
+	Reemplazando en la expresión
+	$$
+		\frac{\Gamma\left(\frac{5}{2} \right)\Gamma\left(\frac{9 }{7} \right)  }{\Gamma\left(\frac{1}{2} \right)\Gamma\left(\frac{2 }{7} \right) }= \frac{\frac{3}{2} \cdotp \frac{1}{2} \Gamma\left(\frac{1}{2}\right) \cdotp      \frac{2}{7}\Gamma\left(\frac{2}{7}\right) }{\Gamma\left(\frac{1}{2} \right)\Gamma\left(\frac{2 }{7} \right) } =\frac{3}{2} \cdotp \frac{1}{2}\cdotp  \frac{2}{7} =\frac{3}{14}
+	$$
+
+	$$
+		\therefore \frac{\Gamma\left(\frac{5}{2} \right)\Gamma\left(\frac{9 }{7} \right)  }{\Gamma\left(\frac{1}{2} \right)\Gamma\left(\frac{2 }{7} \right) }=\frac{3}{14}
+	$$
+}
+\ex{Encuentre el valor de $\Gamma(\frac{5}{2})$ si $\Gamma(\frac{1}{2}) = \sqrt{\pi}$}{\label{ex:ejmplo_01_01}
 
 	\begin{align*}
 		\Gamma\qty(\frac{5}{2}) & = \Gamma\qty(1+\frac{3}{2})  =  \frac{3}{2} \cdot \Gamma\qty(\frac{3}{2}) =  \frac{3}{2} \cdot\pqty{ \Gamma\qty(1+\frac{1}{2}) } = \\
@@ -77,6 +118,47 @@ $$
 	\end{align*}
 }
 
+\ex{}{	Calcular la siguiente integral, si $\Gamma\left( \frac{1}{2} \right)=\sqrt{\pi} $
+
+	$$
+		\int_{0}^{\infty} t^{7/2} e^{-t}\dd{t}
+	$$
+
+	\resolucion
+
+	$$
+		\int_{0}^{\infty} t^{7/2} e^{-t}\dd{t}=\int_{0}^{\infty} t^{5/2-1} e^{-t}\dd{t}=\Gamma \left( \frac{5}{2} \right)
+	$$
+
+	Usamos la Formula de Reducción $\Gamma(z+1)=z \Gamma(z)	$, usamos el resultado del ejemplo \ref{ex:ejmplo_01_01},
+	$$
+		\therefore \int_{0}^{\infty} t^{7/2} e^{-t}\dd{t}=\frac{3}{4}\sqrt{\pi}
+	$$
+}
+\ex{}{	Calcular el siguiente límite para todo $a>1$
+
+	$$
+		\lim\limits_{n \to \infty} \frac{\Gamma(n!+1) \left( \sqrt[\Gamma(n!+1)]{a}-1\right) }{\Gamma(n-1)}
+	$$
+
+	\resolucion
+
+	$$
+		\lim\limits_{n \to \infty} \frac{\Gamma(n!+1) \left( \sqrt[\Gamma(n!)]{a}-1\right) }{\Gamma(n-1)}=	\lim\limits_{n \to \infty} \frac{\Gamma(n!+1) \left( \sqrt[\Gamma(n!)]{a}-1\right) }{n!}
+	$$
+	$$
+		\lim\limits_{n \to \infty} \frac{n!\Gamma(n!) \left( \sqrt[\Gamma(n!)]{a}-1\right) }{n!}=\lim\limits_{n \to \infty}  \Gamma(n!) \left( \sqrt[\Gamma(n!)]{a}-1\right)
+	$$
+
+	Hacemos el siguiente cambio de variable $x=\frac{1}{\Gamma(n!)}  $
+
+	$$
+		\lim\limits_{x \to 0 ^+} \frac{a^x-1}{x}=\ln(a)
+	$$
+	$$
+		\therefore  \lim\limits_{n \to \infty} \frac{\Gamma(n!+1) \left( \sqrt[\Gamma(n!+1)]{a}-1\right) }{\Gamma(n-1)} = \ln(a)
+	$$
+}
 
 \mprop{Producto de Weierstrass}{
 	La función gamma admite la representación infinita:
@@ -84,6 +166,11 @@ $$
 	\[
 		\frac{1}{\Gamma(z)} = z e^{\gamma z} \prod_{n=1}^\infty \left(1 + \frac{z}{n} \right) e^{-z/n}, \quad z \in \mathbb{C} \setminus \{0, -1, -2, \dots\}
 	\]
+	Es decir,
+	$$
+		\Gamma(z)=\dfrac{e^{-\gamma z}}{z} \prod_{n=1}^{\infty} \left(1+\dfrac{z}{n} \right)^{-1} e^{z/n}
+	$$
+
 
 	donde la constante \( \gamma \), llamada \textbf{constante de Euler–Mascheroni}, se define como:
 
@@ -134,10 +221,41 @@ $$
 	\end{align*}
 }
 
+\ex{ Calcule el límite usando la formula de Reflexión de Euler-Función Gamma}{
+
+	$$
+		\lim_{x \to  0 }\frac{\sin(x)}{x}
+	$$
+	\resolucion
+
+	Usamos Reflexión de Euler
+
+	$$
+		\lim_{x \to  0 } \frac{1}{x} \cdot \frac{\pi}{\Gamma\left( \ \frac{x}{\pi}\right)  \Gamma\left( 1-\frac{ x}{\pi} \right)  }
+	$$
+
+	$$
+		\lim_{x \to  0 } \frac{1}{\dfrac{x}{\pi}} \cdot \frac{1}{\Gamma\left( \frac{x}{\pi}\right)  \Gamma\left( 1-\frac{ x}{\pi} \right)  }
+	$$
+
+	Hacemos un cambio de variable $x/\pi=z \Rightarrow  z \to 0$
+
+	$$
+		\lim_{z \to  0 } \dfrac{1}{z} \cdot \frac{1}{\Gamma\left( z\right)  \Gamma\left( 1-z \right)  }
+	$$
+
+	Sabemos que $\Gamma(z+1)=z\Gamma(z)$
+
+	$$
+		\lim_{z \to  0 } \cdot \frac{1}{\Gamma\left( z+1\right)  \Gamma\left( 1-z \right)  } =\frac{1}{\Gamma(1+0)\Gamma(1-0)}=1
+	$$
+
+	$$
+		\therefore \lim_{x \to  0 }\frac{\sin(x)}{x}=1
+	$$}
 \section{ Otras Propiedades Fundamentales}
 
 \begin{itemize}
-
 
 	\item \textbf{Fórmula de Stirling (asimptótica):}
 	      \[
@@ -147,6 +265,14 @@ $$
 	      \[
 		      \Gamma(2z) = \frac{\Gamma(z)\Gamma\left(z + \tfrac{1}{2} \right)}{2^{1 - 2z} \sqrt{\pi}}
 	      \]
+
+	      $$
+		      2^{2z-1}\Gamma(z)\Gamma\left( z+\dfrac{1}{2}\right) =\sqrt{\pi}\Gamma(2z)
+	      $$
+
+	      $$
+		      \Gamma\left( n+\dfrac{1}{2}\right) =\dfrac{(2n)!}{4^n n!}\sqrt{\pi} \hspace{1cm} n=1,2,3,\ldots
+	      $$
 
 	\item \textbf{Fórmula de triplicación:}
 
@@ -161,13 +287,29 @@ $$
 	      \[
 		      \Gamma(nz) = (2\pi)^{\frac{1-n}{2}} \, n^{nz - \frac{1}{2}} \prod_{k=0}^{n-1} \Gamma\left(z + \frac{k}{n} \right)
 	      \]
+	      $$
+		      (2\pi)^{(n-1)/2}  n^{1/2-nz}\Gamma(nz)=\prod_{k=0}^{n-1}\Gamma\left( z+\dfrac{k}{n}\right)
+	      $$
 
-	\item \textbf{Euler's Formula:}
+	      $$
+		      {\displaystyle \Gamma (z)\;\Gamma \left(z+{\frac {1}{k}}\right)\;\Gamma \left(z+{\frac {2}{k}}\right)\cdots \Gamma \left(z+{\frac {k-1}{k}}\right)=(2\pi )^{\frac {k-1}{2}}\;k^{1/2-kz}\;\Gamma (kz)\,\!}
+	      $$
+	\item \textbf{Representación de Gauss }
 	      \[
 		      \Gamma(z) = \lim_{n \to \infty} \frac{n! \, n^z}{z (z+1) (z+2) \cdots (z+n)} = \lim_{n \to \infty} \frac{n! \, n^z}{\prod_{k=0}^{n} (z + k)}
 		      \quad \text{para } z \notin \{0, -1, -2, \dots\}
 	      \]
+	\item \textbf{Formula de Knar's  }
 
+	      $$
+		      \Gamma(1+z)=2^{2z}\prod_{k=1}^{\infty} \left(\pi^{-1/2} \Gamma\left( \dfrac{1}{2}+2^{-k}z \right)  \right)
+	      $$
+
+	\item \textbf{Euler's Formula:}
+
+	      $$
+		      \Gamma(z)=\lim\limits_{n \to \infty} \dfrac{n^z}{z}\prod_{k=1}^{n} \dfrac{k}{k+z}=\dfrac{1}{z}\prod_{k=}^{\infty}\dfrac{\left(1+\frac{1}{k} \right)^z }{1+\frac{z}{k}}
+	      $$
 
 	\item \textbf{Coeficiente binomial generalizado:}
 
@@ -204,13 +346,209 @@ $$
 		      \quad \text{(convergente en } \mathbb{C})
 	      \]
 
-	\item \textbf{Fórmula de Stirling:}
+	\item \textbf{Aproximación de Stirling's}
+
 
 	      Para \( |z| \to \infty \), \( |\arg z| < \pi \):
 
 	      \[
 		      \Gamma(z) \sim \sqrt{2\pi} \, z^{z - \frac{1}{2}} e^{-z} \left( 1 + \frac{1}{12z} + \frac{1}{288z^2} - \frac{139}{51840z^3} + \cdots \right)
 	      \]
+
+	      La serie asintomática para la función Gamma
+	      $$
+		      \Gamma(n+1) \sim  e^{-n} n^n \sqrt{2 \pi n} \left(1+\dfrac{1}{12n}+\dfrac{1}{288n^2} - \dfrac{139}{51840z^3}-\dfrac{571}{2488320z^4}+\ldots\right)
+	      $$
+
+	      Para $n$ suficientemente grande,
+	      $$
+		      \ln(n!)\sim n\ln(n)-n
+	      $$
+
+	      En los problemas vamos a usar con más recuerrencia
+
+	      $$
+		      n!\sim \sqrt{2\pi n}\left(\dfrac{n}{e} \right)^n
+	      $$
+
+	      \ex{ Calcule el siguiente límite}{\label{ejem1}
+
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{\sqrt[n]{n!}}{n}
+		      $$
+
+		      \resolucion
+
+		      Usamos la Aproximación de Stirling $  n!\approx n^n e^{-n}\sqrt{2\pi n }$
+
+		      $$
+			      \lim_{n\to \infty}  \dfrac{\sqrt[n]{n^n e^{-n}\sqrt{2\pi n} }}{n}=	\lim_{n\to \infty}  \dfrac{ n e^{-1}\sqrt[2n]{2\pi n }}{n}
+		      $$
+
+		      Se sabe que $\lim_{n\to\infty} \sqrt[2n]{2\pi n}=1$
+
+		      $$
+			      \therefore 	\lim\limits_{n \to \infty} \dfrac{\sqrt[n]{n!}}{n}=\dfrac{1}{e}
+		      $$
+	      }
+
+	      \ex{Encuentre el valor del límite si  $k=1,2,3,\ldots$ }{
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{\ln(n^n)}{\ln((kn)!)}
+		      $$
+		      \resolucion
+		      Usamos la Aproximación de Stirling $  n!\sim n^n e^{-n}\sqrt{2\pi n }$
+
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{\ln(n^n)}{\ln((kn)^{(kn)} e^{-kn}\sqrt{2\pi kn })}
+		      $$
+
+		      Sabemos que $\ln(ab)=\ln(a)+\ln(b) ; a,b >0$
+
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{n\ln(n)}{kn\ln(kn/e) +\ln(\sqrt{2\pi kn })}
+		      $$
+
+		      Dividimos entre $n$ al numerador como denominador
+
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{\ln(n)}{k\ln(kn/e) + \ln(\sqrt[2n]{2\pi kn })}
+		      $$
+
+		      Es facil comprobar que $\lim_{n\to\infty} \ln( \sqrt[2n]{2\pi k n} ) =0$, además $k/e$ es una constante $c$
+
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{\ln(n)}{k\ln(cn)}=\dfrac{1}{k}
+		      $$
+
+		      $$
+			      \therefore \lim\limits_{n \to \infty} \dfrac{\ln(n^n)}{\ln((kn)!)}=\dfrac{1}{k}
+		      $$
+	      }
+
+
+	      \ex{Encuentre el valor del límite si  $k=1,2,3,\ldots$}{
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{\ln(n^n)}{\ln((kn)!)}
+		      $$
+
+		      \resolucion
+
+		      {\bf Método 1}
+
+		      Usamos la Aproximación de Stirling $  n!\sim n^n e^{-n}\sqrt{2\pi n }$
+
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{\ln(n^n)}{\ln((kn)^{(kn)} e^{-kn}\sqrt{2\pi kn })}
+		      $$
+
+		      Sabemos que $\ln(ab)=\ln(a)+\ln(b) ; a,b >0$
+
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{n\ln(n)}{kn\ln(kn/e) +\ln(\sqrt{2\pi kn })}
+		      $$
+
+		      Dividimos entre $n$ al numerador como denominador
+
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{\ln(n)}{k\ln(kn/e) + \ln(\sqrt[2n]{2\pi kn })}
+		      $$
+
+		      Es facil comprobar que $\lim_{n\to\infty} \ln( \sqrt[2n]{2\pi k n} ) =0$, además $k/e$ es una constante $c$
+
+		      $$
+			      \lim\limits_{n \to \infty} \dfrac{\ln(n)}{k\ln(cn)}=\dfrac{1}{k}
+		      $$
+
+		      $$
+			      \therefore \lim\limits_{n \to \infty} \dfrac{\ln(n^n)}{\ln((kn)!)}=\dfrac{1}{k}
+		      $$
+
+	      }
+
+
+	      \ex{}{ \label{ejem2}   Encuentre el valor del límite para todo $k=1,2,3,\ldots $
+
+		      $$
+			      \lim_{n \to \infty} \left( \frac{(kn)!}{(k!n^k )^n  }\right)^{1/kn}
+		      $$
+		      \resolucion
+
+		      Aproximación de Stirling $  t!\sim t^t e^{-t}\sqrt{2\pi t}$ si $ t \to \infty $
+
+		      $$
+			      \lim_{n \to \infty} \left( \frac{ (kn)^{kn} e^{-kn} \ \sqrt{2\pi kn} }{  (k! n^k)^n  }\right)^{1/kn}
+		      $$
+
+		      $$
+			      \lim_{n \to \infty}  \frac{ (kn) e^{-1} \sqrt[2kn]{2\pi kn} }{  \sqrt[k]{k!} n }
+		      $$
+
+		      En los ejemplos anteriores, vimos que  $\lim_{n\to\infty}  \sqrt[2nk]{2\pi k n} =1$
+		      $$
+			      \lim_{n \to \infty}  \dfrac{ k \sqrt[2kn]{2\pi kn} }{ e \sqrt[k]{k!}  } = \frac{ k}{ e \sqrt[k]{k!}  }
+		      $$
+
+
+		      $$
+			      \therefore \lim_{n \to \infty} \left( \frac{(kn)!}{(k!n^k )^n  }\right)^{1/kn} =\frac{ k}{ e \sqrt[k]{k!}  }
+		      $$
+
+	      }
+
+	      \ex{Calcule el siguiene límite $ k, n >0$}{
+	      $$
+		      \lim_{x \to \infty} \left(\frac{(x+k)^{x^{n+1}} \sqrt{x^{2x^n-x^{n-1}} }    }{x^{x^{n+1}} \Gamma^{x^{n-1}}(x) } \right) ^{x^{-n}}
+	      $$
+
+	      \resolucion
+
+	      Reconocemos $(ab)^n=a^n \cdot b^n$
+	      $$
+		      \lim_{x \to \infty}\left(\dfrac{(x+k)^{x^{n+1}}     }{x^{x^{n+1}} } \right) ^{x^{-n}}\cdot
+		      \left(\dfrac{ \sqrt{x^{2x^n-x^{n-1}} }    }{ \Gamma^{x^{n-1}}(x) } \right) ^{x^{-n}}
+	      $$
+
+	      Tambien vemos $a^n \cdot a^m=a^{n+m}$
+
+	      $$
+		      \lim_{x \to \infty}\dfrac{(x+k)^{x^{n+1-n}}     }{x^{x^{n+1-n}} } \cdot
+		      \lim_{x \to \infty} \left(\dfrac{ \sqrt{x^{2x^{n-n+1}-x^{n-1-n+1}} }    }{ \Gamma^{x^{n-1-n+1}}(x) } \right)^{x^{-1}}
+	      $$
+
+	      $$
+		      \lim_{x \to \infty}\dfrac{(x+k)^x     }{x^x } \cdot
+		      \lim_{x \to \infty} \left(\dfrac{ \sqrt{x^{2x-1} }    }{ \Gamma(x) } \right)^{x^{-1}}
+	      $$
+
+	      Relacionamos la función Gamma con el factorial $\Gamma(x)=(x-1)!$ \ \ y \ \     $ x(x-1)!=x! $
+
+	      $$
+		      \lim_{x \to \infty} \left( \dfrac{x+k    }{x }\right)^x  \cdot
+		      \lim_{x \to \infty} \left(\dfrac{x^{x-1/2} }{ (x-1)! } \right)^{x^{-1}}
+		      =
+		      e^k \cdot
+		      \lim_{x \to \infty} \left(\dfrac{x^{x+1/2} }{ x! } \right)^{x^{-1}}
+	      $$
+
+	      Aproximación de Stirling $  n!\sim n^n e^{-n}\sqrt{2\pi n }$
+
+	      $$
+		      e^k\lim_{x \to \infty} \left(\dfrac{x^{x+1/2} }{\sqrt{2\pi}\  x^{x+1/2} \ e^{-x}} \right)^{x^{-1}}
+		      =
+		      e^k\lim_{x \to \infty} \left(\dfrac{e^x }{\sqrt{2\pi}  } \right)^{x^{-1}}
+	      $$
+
+	      Facilmente se comprueba que  $\lim_{x\to\infty} \sqrt[2x]{2\pi }=1$
+	      $$
+		      e^k\lim_{x \to \infty} \dfrac{e}{\sqrt[2x]{2\pi}  } =e^k\cdot e=e^{k+1}
+	      $$
+
+	      $$
+		      \therefore  \lim_{x \to \infty} \left(\dfrac{(x+k)^{x^{n+1}} \sqrt{x^{2x^n-x^{n-1}} }    }{x^{x^{n+1}} \Gamma^{x^{n-1}}(x) } \right) ^{x^{-n}}=e^{k+1}
+	      $$
+	      }
+
 	\item \textbf{Desarrollo asintótico de \( \ln \Gamma(z) \):}
 
 	      \[
@@ -220,20 +558,124 @@ $$
 
 	      donde \( B_{2n} \) son los números de Bernoulli.
 
+	\item \textbf{Expansión de Laurent}
+
+	      $$
+		      \Gamma(z)=\frac{1}{z}-\gamma +\frac{(\gamma^2+\zeta(2))z }{2}+\mathcal{O}(z^2)
+	      $$
+
+	      En los siguientes capitulos estudiaremos las siguientes constantes:
+
+	      La constante de Euler Mascheroni $\gamma \approx 0.577 \ldots $
+
+	      La función Zeta de Riemman de dos $\zeta(2)=\frac{\pi^2}{6}$
+
+	      \ex{Calcular el siguiente límite}{
+		      $$
+			      \lim\limits_{t \to 0} \frac{\Gamma(t+1)+\gamma t-1}{t^2}
+		      $$
+
+		      donde $\gamma$ es la constante de Euler-Mascheroni
+
+		      \resolucion
+
+		      Por la expansión de Laurent
+		      $$
+			      \Gamma(t+1)=1-\gamma t + \frac{(\gamma^2+\zeta(2))t^2 }{2}+\mathcal{O}(t^3)
+		      $$
+
+		      $$
+			      \Gamma(t+1)+\gamma t-1=  \frac{(\gamma^2+\zeta(2))t^2 }{2}+\mathcal{O}(t^3)
+		      $$
+
+		      $$
+			      \frac{\Gamma(t+1)+\gamma t-1}{t^2}= \frac{(\gamma^2+\zeta(2))}{2}+\mathcal{O}(t)
+		      $$
+
+		      $$
+			      \lim\limits_{t \to 0 }	\frac{\Gamma(t+1)+\gamma t-1}{t^2}=\lim\limits_{t \to 0 } \left(   \frac{(\gamma^2+\zeta(2))}{2}+\mathcal{O}(t)\right)
+		      $$
 
 
+		      $$
+			      \lim\limits_{t \to 0 }	\frac{\Gamma(t+1)+\gamma t-1}{t^2}=   \frac{(\gamma^2+\zeta(2))}{2}+\cancelto{0}{\lim\limits_{t \to 0 } \mathcal{O}(t)}
+		      $$
+
+		      La función Zeta de Riemman de dos es,  $\zeta(2)=\frac{\pi^2}{6}$
+
+		      $$
+			      \therefore \lim\limits_{t \to 0 }	\frac{\Gamma(t+1)+\gamma t-1}{t^2}=\frac{\gamma^2}{2}+\frac{\pi^2}{12}
+		      $$
+	      }
 \end{itemize}
 
 \section{Ejercicios }
 
 \subsection{Ejercicios Resueltos}
 \begin{enumerate}
-	\item Demostrar:
+	\item Evalue:
 	      \[
-		      \Gamma\left(\frac{1+i}{2}\right) \Gamma\left(\frac{1-i}{2}\right)= \sqrt{\pi} \sech(\frac{\pi}{2})
+		      \Gamma\left(\frac{1+i}{2}\right) \Gamma\left(\frac{1-i}{2}\right)
 	      \]
-\end{enumerate}
+	      Solución:
+	      \begin{align*}
+		      \Gamma\left(\frac{1+i}{2}\right) \Gamma\left(\frac{1-i}{2}\right)
+		       & = \Gamma\left(\frac{1+i}{2}\right) \Gamma\left(1 - \frac{1+i}{2}\right)                                                         \\
+		       & = \frac{\pi}{\sin\left(\pi \cdot \pqty{\frac{1+i}{2} } \right)} = \frac{\pi}{\sin\left(\frac{\pi}{2} + \frac{\pi i}{2} \right)} \\
+		       & = \frac{\pi}{\cos(\frac{\pi i}{2} )} =\frac{\pi}{\cosh(\frac{\pi }{2} )}                                                        \\
+		       & =   \pi  \sech(\frac{\pi}{2})
+	      \end{align*}
+	\item  Cacule,
+	      $$
+		      \int_a^{a+1} \ln(\Gamma(x)) \dd{x}
+	      $$
+	      Sol:
 
+	      Sea $f(a)$ la integral,
+	      $$
+		      f(a)=\int_a^{a+1} \ln(\Gamma(x)) \dd{x}
+	      $$
+	      diferenciando ambos lados
+	      $$
+		      f'(a) = \ln(\Gamma(a+1)) -\ln(\Gamma(a)) = \ln(a)
+	      $$
+	      Integrando respecto a $a$ en ambos lados,
+	      $$
+		      f(a)= a\ln(a)-a+C
+	      $$
+	      si $a \to 0^{+}$, tenemos que
+	      $$
+		      C = \int_0^1 \ln(\Gamma(x)) \dd{x} = \ln(\sqrt{2\pi})
+	      $$
+	      Finalmente,
+	      $$
+		      \int_a^{a+1} \ln(\Gamma(x)) \dd{x} = a\ln(a)-a+\ln(\sqrt{2\pi}) = \ln(\sqrt{2\pi} \pqty{\frac{a}{e}}^a)
+	      $$
+	\item 	$$
+		      \lim_{k \to \infty}  \ \lim_{n \to \infty} \left( \frac{(kn)!}{(k!n^k )^n  }\right)^{1/kn}
+	      $$
+
+	      \resolucion
+
+	      Por el Ejemplo \ref{ejem2}
+
+	      $$
+		      \lim_{k \to \infty}\left[   \ \lim_{n \to \infty} \left( \dfrac{(kn)!}{(k!n^k )^n  }\right)^{1/kn}\right]  = \lim_{k \to \infty} \left[ \dfrac{ k}{ e \sqrt[k]{k!}  } \right]
+	      $$
+
+	      \noindent
+
+	      Por el Ejemplo \ref{ejem1}
+
+	      $$
+		      \lim_{k \to \infty} \left[ \dfrac{ k}{ e \sqrt[k]{k!}  } \right] =\dfrac{1}{e \left( \dfrac{1}{e} \right) }=1
+	      $$
+
+	      $$
+		      \therefore \lim_{k \to \infty}  \ \lim_{n \to \infty} \left( \frac{(kn)!}{(k!n^k )^n  }\right)^{1/kn} =1
+	      $$
+	\item
+\end{enumerate}
 
 \subsection{Ejercicios Propuestos}
 
@@ -257,13 +699,65 @@ $$
 		      \quad \text{usando } \Gamma\left(\frac{1}{2}\right)
 	      \]
 
-
 	\item Mostrar que:
 	      \[
 		      \int_0^\infty \frac{t^{z-1}}{1 + t} \, \dd{t} = \pi / \sin(\pi z)
 		      \quad \text{para } 0 < \operatorname{Re}(z) < 1
 	      \]
+	\item
+	      Encuentre el valor del límite si $a \in \mathbb{Z^{+}}$
+
+	      $$
+		      \lim_{k \to \infty}    \left(\frac{e^{(k!)^{-a} +(k!)^k}-k^{(k^2)!}}{\left( (ak)!\right) ^{ak}} \right)
+	      $$
 
 \end{enumerate}
 
-\section{Función Beta}
+\subsection{Gamma Incompleta}
+
+\dfn{Función Gamma Incompleta}{
+	$$
+		\Gamma(z,x)=\int_x^{\infty} t^{z-1 } e^{-t} \dd{t}  \hspace{1cm} \Re(z)>0
+	$$
+}
+
+\dfn{Función gamma Incompleta- Función Gamma Inferior}{
+	$$
+		\gamma(z,x)=\int_0^{x} t^{z-1 } e^{-t} \dd{t}  \hspace{1cm} \Re(z)>0
+	$$
+}
+
+\dfn{Simbolo de Kramp}{
+	$$
+		c^{a/b}=c(c+b)(c+2b)\ldots\left[ c+(a-1)b \right] =\dfrac{b^a  \Gamma\left(a+ \dfrac{c}{b}\right)}{\Gamma\left( \dfrac{c}{b}\right) }
+	$$ }
+
+\thm{}{
+
+	Con la representaciónde la función Gamma, podemos extender  a 	$x > -1$.
+
+	$$
+		\bigg\rvert  \int_0^{\infty} e^{-t}t^x\dd{t} \bigg\rvert  \leq  \int_{\epsilon}^{\infty} e^{-t}t^x\dd{t} <\infty
+	$$
+
+	Cuando cercamos a cero $x=-z$ se tiene
+
+	$$
+		\bigg\rvert  \int_0^{\epsilon} \dfrac{e^{-t}}{t^z }  \dd{t} \bigg\rvert  \sim   \int_0^{\epsilon} \dfrac{1}{t^z}\dd{t} <\infty
+	$$
+}
+
+\subsubsection{Relación entre la Función Gamma Superior e Inferior}
+
+\[ \Gamma(z)=\gamma(z,x)+\Gamma(z,x) \left\{ \begin{array}{rcl}
+		 & \Gamma(z+1,x)=z\Gamma(z,x)+x^z e^{-x} \\
+		 &                                       \\
+		 & \gamma(z+1,x)=z\gamma(z,x)-x^z e^{-x} \\
+	\end{array}
+	\right. \]
+
+$$
+	\Gamma(z)=\lim_{x\to\infty} \gamma(z,x)
+$$
+
+

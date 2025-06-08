@@ -3,18 +3,40 @@
 %\input{macros}
 \input{letterfonts} 
 
-\title{\Huge{
-		Cálculo con }\\Funciones Especiales}
-\author{\huge{Gerald Cainicela}}
-\date{}
+\title{Special Functions in Calculus}
+\author{{Gerald Cainicela}}
+\date{\today}
 \usepackage{physics}
+\usepackage{xcolor} % Requerido para reglas horizontales más agradables en tablas
+\definecolor{ocre}{HTML}{000AFF} % Definir el color naranja usado para resaltar en todo el libro.
+
+\newcommand{\resolucion}{ \begin{center}
+		{\bf\color{ocre} Resolución}
+\end{center}}
+
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\pagestyle{fancy}
+\fancyhf{} % Limpiar encabezado y pie
+
+% Encabezados
+\fancyhead[L]{} % Izquierda
+\fancyhead[C]{\textbf{Special Functions in Calculus}} % Centro
+\fancyhead[R]{\thepage} % Derecha
+
+% Pie de página
+\fancyfoot[L]{\href{https://github.com/asdcainicela/special-functions-calculus}{GitHub}} % Izquierda
+\fancyfoot[C]{}
+\fancyfoot[R]{\href{https://www.linkedin.com/in/gerald-cainicela/}{LinkedIn}} % Derecha
+
 \begin{document}
 
-%\maketitle
+\maketitle
 \newpage% or \cleardoublepage
 % \pdfbookmark[<level>]{<title>}{<dest>}
 \pdfbookmark[section]{\contentsname}{toc}
-\tableofcontents
+%\tableofcontents
 \pagebreak
 
 
