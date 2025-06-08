@@ -1,0 +1,433 @@
+\chapter{Familias del Factorial}
+
+\section{Multifactorial y Familias del Factorial}
+
+\subsection{Introducción}
+
+De manera fundamental el factorial de n representa el número de formas distintas de ordenar n objetos distintos (elementos sin repetición). Este hecho ha sido conocido desde hace varios siglos, en el siglo XII por los estudiosos hindúes.
+
+\subsection{Notaciones Tradicionales}
+
+\begin{multicols}{2}
+
+
+	\begin{tabular}{||c||c||}
+		\hline
+		Función         & Notaciones Tradicionales \\
+		\hline
+		Factorial       & $n!$                     \\
+		\hline
+		Doble Factorial & $n!!$                    \\
+		\hline
+		Multifactorial  & $n!^{k}$                 \\
+		\hline
+		Primorial       & $ n\# $                  \\
+		\hline
+	\end{tabular}
+
+
+	\begin{tabular}{||c||c||}
+		\hline
+		Función                   & Notaciones  Tradicionales \\
+		\hline
+		Superfactorial            & $Sf(n), G$                \\
+		\hline
+		Pickover’s Superfactorial & $n\textdollar$            \\
+		\hline
+		Hiperfactoria             & $H(n)$                    \\
+		\hline
+	\end{tabular}
+
+\end{multicols}
+
+
+\section{Definiciones}\index{Definición}
+
+
+\subsection{Factorial}
+
+\dfn{Definición}{
+	\[n!=\left\{ \begin{array}{rcl}
+			n(n-1)(n-2)\ldots 3\cdot2\cdot1 &  & n=1, 2, 3,\ldots \\
+			                                &  &                  \\
+			1                               &  & n=0              \\
+		\end{array}
+		\right. \]
+
+}
+
+
+
+\subsection{Doble Factorial}
+
+\dfn{Definición}{
+	\[n!!=\left\{ \begin{array}{rcl}
+			n(n-2)(n-4)\ldots 5\cdot3\cdot1 &  & ; n>0 \ \ \ Impar \\
+			                                &  &                   \\
+			n(n-2)(n-4)\ldots 6\cdot4\cdot2 &  & ; n>0 \ \ \  Par  \\
+			                                &  &                   \\
+			1                               &  & ; n=-1,0          \\
+		\end{array}
+		\right. \]
+}
+
+
+
+\subsection{Multifactorial}
+
+\dfn{Definición}{
+
+\[n!^{k}=\left\{ \begin{array}{rcl}
+		n((n-k)!^{k}) &  & ;   \ n> k      \\
+		              &  &                 \\
+		n             &  & ;   \ 0<n\leq k \\
+		              &  &                 \\
+		1             &  & ;  \ -k<n\leq 0
+	\end{array}
+	\right. \]
+
+
+}
+
+
+\subsection{Primorial}
+
+\dfn{Definición}{
+
+	\[ n\# =\left\{ \begin{array}{rcl}
+			(n-1)\#\times n &  & ;   \ n \ \  \mbox{es primo}   \\
+			                &  &                                \\
+			(n-1)\#         &  & ;   \ n \ \ \mbox{no es primo} \\
+			                &  &                                \\
+			1               &  & ;  \ n=0,1
+		\end{array}
+		\right. \]
+}
+
+\subsection{Superfactorial}
+
+\dfn{Definición}{
+
+	\[  \mbox{sf}(n)=\left\{ \begin{array}{rcl}
+			 &  & \displaystyle \prod _{k=1}^{n}k!                           \\
+			 &  &                                                            \\
+			 &  & \displaystyle \prod _{k=1}^{n}k^{n-k+1}                    \\
+			 &  &                                                            \\
+			 &  & 1^{n}\cdot 2^{n-1}\cdot 3^{n-2}\cdots (n-1)^{2}\cdot n^{1}
+		\end{array}
+		\right. \]
+
+}
+
+
+\subsection{Pickover’s Superfactorial}
+
+
+$$\displaystyle n\$ \equiv \underbrace{n!^{{n!}^{{\cdot }^{{\cdot }^{{\cdot }^{n!}}}}}}_{n!}$$
+
+
+\dfn{Definición}{
+
+	\[  n\$ =\left\{ \begin{array}{rcl}
+			 &  & \underbrace{n!^{{n!}^{{\cdot }^{{\cdot }^{{\cdot }^{n!}}}}}}_{n!} \\
+			 &  &                                                                   \\
+			 &  & {}^{n!}(n!)                                                       \\
+			 &  &                                                                   \\
+			 &  & (n!)\uparrow \uparrow (n!)=(n!)\uparrow \uparrow \uparrow 2       \\
+		\end{array}
+		\right. \]
+
+}
+
+\subsection{Hiperfactorial}
+
+
+
+\dfn{Definición}{
+
+	\[  H(n) =\left\{ \begin{array}{rcl}
+			 &  & \displaystyle \prod _{k=1}^{n}k^{k}                      \\
+			 &  &                                                          \\
+			 &  & 1^{1}\cdot 2^{2}\cdot 3^{3}\cdots (n-1)^{n-1}\cdot n^{n} \\
+		\end{array}
+		\right. \]
+
+}
+
+
+
+
+\section{Representaciones y Propiedades}\index{Representaciones y Propiedades}
+
+
+
+\subsection{Representaciones con Integrales}
+
+
+\begin{align*}
+	n!= & \int_{0}^{\infty} t^n e^{-t} \; \mbox{d}t \hspace{0.5cm} ;\hspace{.5cm}  n\in\mathbb{N}
+	\\
+	n!= & \int_{0}^{\infty} \left( e^{-t} - \sum_{k=0}^{m}\dfrac{(-t)^k}{k!} \right)t^{n} \; \mbox{d}t \hspace{0.5cm} ;\hspace{.5cm}  m\in\mathbb{N}^+ \wedge -m-1<\Re(n)<-m
+	\\
+	n!= & \int_{0}^{1} \ln^n\left(\dfrac{1}{t} \right)  \; \mbox{d}t \hspace{0.5cm} ;\hspace{.5cm} \Re(n)>-1
+\end{align*}
+
+\subsection{Representaciones con Límites}
+
+\begin{align*}
+	n!= & \lim\limits_{x \to 1} \dfrac{(1-x)^{n-1}}{ \prod_{k=2}^{n} (1-x^{1/k})}\hspace{0.5cm} ; \hspace{.5cm} n\in\mathbb{N}
+	\\
+	n!= & \lim\limits_{p \to \infty} \int_{0}^{\infty} \left(1-\dfrac{x}{p} \right)^{p } x^p \; \mbox{d}x   \hspace{0.5cm} ; \hspace{.5cm} \Re(n)>-1
+\end{align*}
+
+
+
+
+
+\subsection{Representaciones de Producto Factorial}
+\begin{align*}
+	 & n!=\prod_{k=1}^{n} k \hspace{.5cm} \ \ ; \hspace{.5cm} n\in\mathbb{N}                                                                                                                                                          \\
+	 & \left( n+\dfrac{a}{b}\right) !=\dfrac{1}{b^n} \left(\dfrac{a}{b} \right)! \prod_{k=1}^{n} (a+kb) \hspace{0.5cm}\ \ ; \hspace{.5cm} n\in\mathbb{N} \wedge a \in\mathbb{N}^+ \wedge b \in\mathbb{N}^+ \wedge a<b
+	\\
+	 &
+	\\
+	 & \left( \dfrac{a}{b}-n\right) != \left(\dfrac{a}{b} \right)! \dfrac{(-1)^n  b^n}{ \prod_{k=1}^{n} (-a+kb-b)  }    \hspace{0.5cm}\ \ ; \hspace{.5cm} n\in\mathbb{N} \wedge a \in\mathbb{N}^+ \wedge b \in\mathbb{N}^+ \wedge a<b
+	\\
+	 &
+	\\
+	 & n!= \dfrac{1}{n+1}\prod_{k=1}^{\infty} \dfrac{\left(1+\dfrac{1}{k} \right)^{n+1} }{\dfrac{n+1}{k}+1} \hspace{0.5cm}\ \ ; \hspace{.5cm} n \notin \mathbb{N}
+\end{align*}
+
+\section{Tabla de Valores Notables}\index{Tabla de Valores Notables}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	n       & -1  & 0 & 1 & 2 & 3 & 4  & 5   & 6   & 7    & 8     & 9      & 10      \\
+	\hline
+	$$ n!$$ & N.A & 1 & 1 & 2 & 6 & 24 & 120 & 720 & 5040 & 40320 & 362880 & 3628800 \\
+	\hline
+\end{tabular}
+
+\subsection{Relación del Factorial con el Doble Factorial}
+\begin{align*}
+	n!= & 2^{-(\sin^2(-\pi n))/2-n} \pi^{(\sin^2(n\pi))/2} (2n)!! \\
+	n!= & (n-1)! n!!
+\end{align*}
+
+
+\subsection{Multiple argumento}
+
+\begin{align*}
+	(2n)!= & \dfrac{2^{2n} n }{\sqrt{\pi}} (n-1)!\left( n-\dfrac{1}{2}\right)!
+	\\
+	(3n)!= & \dfrac{3^{3n+1/2} n }{2\pi} (n-1)!\left( n-\dfrac{2}{3}\right)! \left( n-\dfrac{1}{3}\right)!
+	\\
+	(mn)!= & nm^{mn+1/2} (2 \pi)^{(1-m)/2}  \prod_{k=0}^{m-1} \left(  \dfrac{k}{m}+n-1\right) ! \hspace{0.5cm}\ \ ; \hspace{.5cm} m \in \mathbb{N}
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{factoriales}
+\subsection{teoria}
+
+Multifactorial
+
+su simbolo es $n!^{k} $
+
+
+\begin{align*}
+	n!^{k} = & n((n-k)!^{k}), si  \ n> k \\
+	n!^{k} = & n, si  \ 0<n\leq k        \\
+	n!^{k} = & 1, si  \ -k<n\leq 0
+\end{align*}
+
+Propiedad
+
+$$
+	n!=\prod_{i=0}^{k-1} (n-i)!^{(k)}, para k \in \mathbf{z}^+ , n\geq k-1
+$$
+
+
+Asimismo tambien hay otra representación
+
+su simbolo es $n!_{k} $
+
+
+\begin{align*}
+	n!_{k} = & n((n-k)!_{k}), si  \ n> 0 \\
+	n!^{k} = & 1, si  \ -k<n\leq 0       \\
+	n!^{k} = & 0, si  \ otroscasos
+\end{align*}
+
+$$
+	n!_{k} =n(n-k)...(k+1)=\left(k \right)^{(n-1)/(k)} \dfrac{\Gamma (n/(k)+1)}{\Gamma(1/k+1) }
+$$
+
+$${\displaystyle n!_{(\alpha )}={\begin{cases}n\cdot (n-\alpha )!_{(\alpha )}&{\text{ if }}n>0\,;\\1&{\text{ if }}-\alpha <n\leq 0\,;\\0&{\text{ otherwise. }}\end{cases}}}$$
+
+$${\displaystyle {\begin{aligned}n!_{(\alpha )}&=n(n-\alpha )\cdots (\alpha +1)\\&=\alpha ^{\frac {n-1}{\alpha }}\left({\frac {n}{\alpha }}\right)\left({\frac {n-\alpha }{\alpha }}\right)\cdots \left({\frac {\alpha +1}{\alpha }}\right)\\&=\alpha ^{\frac {n-1}{\alpha }}{\frac {\Gamma \left({\frac {n}{\alpha }}+1\right)}{\Gamma \left({\frac {1}{\alpha }}+1\right)}}\,.\end{aligned}}}$$
+
+Propiedades
+
+$$\displaystyle {\begin{aligned}(\alpha n-1)!_{(\alpha )}&=\sum _{k=0}^{n-1}{\binom {n-1}{k+1}}(-1)^{k}\times \left({\frac {1}{\alpha }}\right)_{-(k+1)}\left({\frac {1}{\alpha }}-n\right)_{k+1}\times {\bigl (}\alpha (k+1)-1{\bigr )}!_{(\alpha )}{\bigl (}\alpha (n-k-1)-1{\bigr )}!_{(\alpha )}\\&=\sum _{k=0}^{n-1}{\binom {n-1}{k+1}}(-1)^{k}\times {\binom {{\frac {1}{\alpha }}+k-n}{k+1}}{\binom {{\frac {1}{\alpha }}-1}{k+1}}\times {\bigl (}\alpha (k+1)-1{\bigr )}!_{(\alpha )}{\bigl (}\alpha (n-k-1)-1{\bigr )}!_{(\alpha )}\,,\end{aligned}}$$
+
+$$\displaystyle {\begin{aligned}(\alpha n-1)!_{(\alpha )}&=\sum _{k=0}^{n-1}\sum _{i=0}^{k+1}{\binom {n-1}{k+1}}{\binom {k+1}{i}}(-1)^{k}\alpha ^{k+1-i}(\alpha i-1)!_{(\alpha )}{\bigl (}\alpha (n-1-k)-1{\bigr )}!_{(\alpha )}\times (n-1-k)_{k+1-i}\\&=\sum _{k=0}^{n-1}\sum _{i=0}^{k+1}{\binom {n-1}{k+1}}{\binom {k+1}{i}}{\binom {n-1-i}{k+1-i}}(-1)^{k}\alpha ^{k+1-i}(\alpha i-1)!_{(\alpha )}{\bigl (}\alpha (n-1-k)-1{\bigr )}!_{(\alpha )}\times (k+1-i)!.\end{aligned}}$$
+
+
+como un caso particular
+
+$${\displaystyle (2n-1)!!=\sum _{k=0}^{n-1}{\binom {n}{k+1}}(2k-1)!!(2n-2k-3)!!.}$$
+
+
+
+doblde factorial
+
+$$ {\displaystyle n!!={\frac {(2k)!}{2^{k}k!}}={\frac {(2k-1)!}{2^{k-1}(k-1)!}}\,.}$$
+
+$${\displaystyle (2n-1)!!=2^{n}\cdot {\frac {\Gamma \left({\frac {1}{2}}+n\right)}{\sqrt {\pi }}}=(-2)^{n}\cdot {\frac {\sqrt {\pi }}{\Gamma \left({\frac {1}{2}}-n\right)}}\,.}$$
+
+$${\displaystyle {\begin{aligned}(2n-1)!!&=\sum _{k=1}^{n-1}{\binom {n}{k+1}}(2k-1)!!(2n-2k-3)!!\,,\\(2n-1)!!&=\sum _{k=0}^{n}{\binom {2n-k-1}{k-1}}{\frac {(2k-1)(2n-k+1)}{k+1}}(2n-2k-3)!!\,,\\(2n-1)!!&=\sum _{k=1}^{n}{\frac {(n-1)!}{(k-1)!}}k(2k-3)!!\,.\end{aligned}}}$$
+
+$${\displaystyle {\frac {(2n)!!}{(2n-1)!!}}\approx {\sqrt {\pi n}}.}$$
+
+
+Primorial
+
+denotado n,es similar al factorial, pero con el producto tomado sólo sobre los números primos menores o iguales a n. Es decir
+
+$${\displaystyle n\#=\prod _{p\leq n}p,}$$
+
+Superfactorial
+Neil Sloane y Simon Plouffe definieron un superfactorial en The Encyclopedia of Integer Sequences (Academic Press, 1995) como el producto de los primeros n factoriales. Así que el superfactorial de 4 es
+
+
+
+
+
+\subsection{Problemas Resueltos}
+
+\ex{ejemplo}{Encuentre el valor del límite para todo $n =0,1,2,\ldots$
+	$$
+		\lim\limits_{x \to \infty} \dfrac{(x+n+1)!}{(x+n)!+(x+n+1)!}
+	$$
+
+	\resolucion
+
+
+	Usamos $(a+1)=(a+1)a!$
+
+	$$
+		\lim\limits_{x \to \infty} \dfrac{(x+n+1)(x+n)!}{(x+n)!+(x+n+1)(x+n)!}
+	$$
+
+	Factorizamos terminos semejantes
+
+	$$
+		\lim\limits_{x \to \infty} \dfrac{(x+n+1)}{\left[1+(x+n+1) \right]}\cdot \cancelto{1}{\dfrac{(x+n)!}{(x+n)!}}
+		=
+		\lim\limits_{x \to \infty} \dfrac{x+n+1}{x+n+2}
+	$$
+
+	$$
+		\therefore \lim\limits_{x \to \infty} \dfrac{(x+ n+1)!}{(x+n)!+(xn+1)!}=1
+	$$
+}
+
+
+
+
+\ex{ejemplo}{Encuentre el valor del límite si  $k=1,2,3,\ldots$
+
+
+	$$
+		\lim\limits_{n \to \infty} \dfrac{\ln(n^n)}{\ln((kn)!)}
+	$$
+
+	\resolucion
+
+
+
+	Usamos el Criterio de Stolz-Cesàro
+
+	$$
+		\lim\limits_{n \to \infty} \dfrac{\ln(n^n)}{\ln((2n)!)}=L \Rightarrow  \lim\limits_{n \to \infty} \dfrac{\ln((n+1)^{(n+1)})-\ln(n^n)}{\ln((kn+k)!)-\ln((kn)!)}=L
+	$$
+
+	Agrupamos terminos semejantes
+
+	$$
+		L=\lim\limits_{n \to \infty} \dfrac{n \left( \ln \left( n+1\right) -\ln(n)\right)   +\ln(n+1)}{\ln\left( \dfrac{(kn+k)!}{(kn)!}\right) }
+	$$
+
+	Sabemos que $\ln(a/b)=\ln(a)-\ln(b) ; a,b>0 ; a\neq 1$
+
+	$$
+		L=\lim\limits_{n \to \infty} \dfrac{n\ln \left( \dfrac{n+1}{n}\right)  +\ln(n+1)}{\ln\left( \dfrac{(kn+k)!}{(kn)!}\right) }
+	$$
+
+	Es fácil comprobar que $\lim_{n \to \infty}\ln \left( \frac{n+1}{n}\right)^n =1$
+
+	$$
+		L=\lim\limits_{n \to \infty} \dfrac{\ln \left( \dfrac{n+1}{n}\right)^n  +\ln(n+1)}{\ln\left( (kn+k)(kn+k-1)\ldots(kn+1)\right) }
+	$$
+
+	Separamos el límite  y se observa queel primero es igual a 0
+
+	$$
+		L= \lim\limits_{n \to \infty} \dfrac{1}{\ln\left( (kn+k)(kn+k-1)\ldots(kn+1)\right) }+ \lim\limits_{n \to \infty} \dfrac{\ln(n+1)}{\ln\left( (kn+k)(kn+k-1)\ldots(kn+1)\right) }
+	$$
+
+	$$
+		L=  \lim\limits_{n \to \infty} \dfrac{\ln(n+1)}{\ln\left( (kn)^{k}+ \ldots +k!\right) }
+	$$
+
+	Sean $C_2, C_3, \ldots , C_{k-2}, C_{k-1}, C_k$ constantes
+	$$
+		L=\lim\limits_{n \to \infty} \dfrac{\ln(n+1)}{\ln\left( (kn)^{k} \left( 1+\dfrac{C_{2} n^{k-1}}{(kn)^{k}}  \ldots+\dfrac{C_{k-1} n}{(kn)^{k}} +\dfrac{k!}{(kn)^{k}} \right) \right) }
+	$$
+
+	$$
+		L=\lim\limits_{n \to \infty} \dfrac{\ln(n+1)}{\ln\left( (kn)^{k} \left( 1+\cancelto{0}{\dfrac{C_{2} n^{k-1}}{(kn)^{k}}}  \ldots+ \cancelto{0}{\dfrac{C_{k-1} n}{(kn)^{k}}} +\cancelto{0}{\dfrac{k!}{(kn)^{k}}} \hspace{0.5cm}\right) \right) }
+	$$
+
+	$$
+		L=\lim\limits_{n \to \infty} \dfrac{\ln(n+1)}{\ln\left( (kn)^{k} \right) }=\lim\limits_{n \to \infty} \dfrac{\ln(n+1)}{k\ln\left(kn \right) }=\dfrac{1}{k}
+	$$
+
+
+	$$
+		\therefore \lim\limits_{n \to \infty} \dfrac{\ln(n^n)}{\ln((kn)!)}=\dfrac{1}{k}
+	$$
+}
+
+
