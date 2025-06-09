@@ -391,7 +391,7 @@ $$
 			      \therefore 	\lim\limits_{n \to \infty} \dfrac{\sqrt[n]{n!}}{n}=\dfrac{1}{e}
 		      $$
 	      }
-	      
+
 	      \ex{Encuentre el valor del límite si  $k=1,2,3,\ldots$ }{
 		      $$
 			      \lim\limits_{n \to \infty} \dfrac{\ln(n^n)}{\ln((kn)!)}
@@ -498,33 +498,33 @@ $$
 
 	      \ex{Calcule el siguiene límite $ k, n >0$}{
 	      $$
-		      \lim_{x \to \infty} \left(\frac{(x+k)^{x^{n+1}} \sqrt{x^{2x^n-x^{n-1}} }    }{x^{x^{n+1}} \Gamma^{x^{n-1}}(x) } \right) ^{x^{-n}}
+		      \lim_{x \to \infty} \left(\frac{(x+k)^{x^{n+1}} \sqrt{x^{2x^n-x^{n-1}} }    }{x^{x^{n+1}} \pqty{\Gamma(x)}^{x^{n-1}} } \right) ^{x^{-n}}
 	      $$
 
 	      \resolucion
 
-	      Reconocemos $(ab)^n=a^n \cdot b^n$
+	      Sea $L$ el límite a calcular, reconocemos $(ab)^n=a^n \cdot b^n$
 	      $$
-		      \lim_{x \to \infty}\left(\dfrac{(x+k)^{x^{n+1}}     }{x^{x^{n+1}} } \right) ^{x^{-n}}\cdot
-		      \left(\dfrac{ \sqrt{x^{2x^n-x^{n-1}} }    }{ \Gamma^{x^{n-1}}(x) } \right) ^{x^{-n}}
+		      L=  \lim_{x \to \infty}\left(\dfrac{(x+k)^{x^{n+1}}     }{x^{x^{n+1}} } \right) ^{x^{-n}}\cdot
+		      \left(\dfrac{ \sqrt{x^{2x^n-x^{n-1}} }    }{ \pqty{\Gamma(x)}^{x^{n-1}} } \right) ^{x^{-n}}
 	      $$
 
 	      Tambien vemos $a^n \cdot a^m=a^{n+m}$
 
 	      $$
-		      \lim_{x \to \infty}\dfrac{(x+k)^{x^{n+1-n}}     }{x^{x^{n+1-n}} } \cdot
-		      \lim_{x \to \infty} \left(\dfrac{ \sqrt{x^{2x^{n-n+1}-x^{n-1-n+1}} }    }{ \Gamma^{x^{n-1-n+1}}(x) } \right)^{x^{-1}}
+		      L=  \lim_{x \to \infty}\dfrac{(x+k)^{x^{n+1-n}}     }{x^{x^{n+1-n}} } \cdot
+		      \lim_{x \to \infty} \left(\dfrac{ \sqrt{x^{2x^{n-n+1}-x^{n-1-n+1}} }    }{ \pqty{\Gamma(x)}^{x^{n-1-n+1}} } \right)^{x^{-1}}
 	      $$
 
 	      $$
-		      \lim_{x \to \infty}\dfrac{(x+k)^x     }{x^x } \cdot
+		      L= \lim_{x \to \infty}\dfrac{(x+k)^x     }{x^x } \cdot
 		      \lim_{x \to \infty} \left(\dfrac{ \sqrt{x^{2x-1} }    }{ \Gamma(x) } \right)^{x^{-1}}
 	      $$
 
 	      Relacionamos la función Gamma con el factorial $\Gamma(x)=(x-1)!$ \ \ y \ \     $ x(x-1)!=x! $
 
 	      $$
-		      \lim_{x \to \infty} \left( \dfrac{x+k    }{x }\right)^x  \cdot
+		      L=  \lim_{x \to \infty} \left( \dfrac{x+k    }{x }\right)^x  \cdot
 		      \lim_{x \to \infty} \left(\dfrac{x^{x-1/2} }{ (x-1)! } \right)^{x^{-1}}
 		      =
 		      e^k \cdot
@@ -534,16 +534,16 @@ $$
 	      Aproximación de Stirling $  n!\sim n^n e^{-n}\sqrt{2\pi n }$
 
 	      $$
-		      e^k\lim_{x \to \infty} \left(\dfrac{x^{x+1/2} }{\sqrt{2\pi}\  x^{x+1/2} \ e^{-x}} \right)^{x^{-1}}
+		      L=   e^k\lim_{x \to \infty} \left(\dfrac{x^{x+1/2} }{\sqrt{2\pi}\  x^{x+1/2} \ e^{-x}} \right)^{x^{-1}}
 		      =
 		      e^k\lim_{x \to \infty} \left(\dfrac{e^x }{\sqrt{2\pi}  } \right)^{x^{-1}}
 	      $$
 
-	      Facilmente se comprueba que  $\lim_{x\to\infty} \sqrt[2x]{2\pi }=1$
+	      Facilmente se comprueba que  $\lim_{x\to\infty} \sqrt[2x]{2\pi }=1$, entonces
 	      $$
-		      e^k\lim_{x \to \infty} \dfrac{e}{\sqrt[2x]{2\pi}  } =e^k\cdot e=e^{k+1}
+		      L= e^k\lim_{x \to \infty} \dfrac{e}{\sqrt[2x]{2\pi}  } =e^k\cdot e=e^{k+1}
 	      $$
-
+	      Finalmente, tenemos el valor de $L$,
 	      $$
 		      \therefore  \lim_{x \to \infty} \left(\dfrac{(x+k)^{x^{n+1}} \sqrt{x^{2x^n-x^{n-1}} }    }{x^{x^{n+1}} \Gamma^{x^{n-1}}(x) } \right) ^{x^{-n}}=e^{k+1}
 	      $$
