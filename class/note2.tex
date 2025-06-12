@@ -1,0 +1,438 @@
+\chapter{Función Beta}
+\section{Definición}
+
+\dfn{definition}{
+	La \textbf{función beta} o \textbf{función de Euler} se define para \( x > 0 \) y \( y > 0 \) como
+	\[
+		B(x, y) = \int_0^1 t^{x-1} (1 - t)^{y-1} \, dt.
+	\]
+}
+Esta integral converge para todos \( x, y > 0 \). Es simétrica:
+\[
+	B(x, y) = B(y, x).
+\]
+
+\section{Propiedades}
+
+\begin{itemize}
+	\item \textbf{Simetría:} \( B(x, y) = B(y, x) \)
+	      \begin{myproof}
+		      Recordemos la definición de la función beta:
+		      \[
+			      B(x, y) = \int_0^1 t^{x-1}(1 - t)^{y - 1} \, dt.
+		      \]
+		      Realizamos el cambio de variable \( u = 1 - t \), entonces \( t = 1 - u \), y \( dt = -du \). Los límites cambian:
+		      \[
+			      t = 0 \Rightarrow u = 1, \quad t = 1 \Rightarrow u = 0.
+		      \]
+		      Invirtiendo los límites por el signo de \( du \), tenemos:
+		      \begin{align*}
+			      B(x, y) & = \int_0^1 t^{x-1}(1 - t)^{y - 1} \, dt                                                 \\
+			              & = \int_1^0 (1 - u)^{x-1} u^{y-1} (-du) = \int_0^1 u^{y-1}(1 - u)^{x-1} \, du = B(y, x).
+		      \end{align*}
+		      Por tanto, se concluye que \( B(x, y) = B(y, x) \).
+	      \end{myproof}
+
+
+	\item
+	      La función beta se relaciona con la función gamma mediante la fórmula:
+	      \[
+		      B(x, y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)}.
+	      \]
+
+
+	      \begin{myproof}
+		      Recordemos la definición de la función gamma:
+		      \[
+			      \Gamma(z) = \int_0^\infty t^{z-1} e^{-t} \, dt, \quad \text{para } \operatorname{Re}(z) > 0.
+		      \]
+		      Sea \( f(t) = t^{x-1} e^{-t} \), \( g(t) = t^{y-1} e^{-t} \). Estas funciones son de tipo exponencial, por lo tanto sus transformadas de Laplace existen y son:
+		      \[
+			      \mathcal{L}\{f\}(s) = \Gamma(x)s^{-x}, \quad \mathcal{L}\{g\}(s) = \Gamma(y)s^{-y}.
+		      \]
+		      Por la propiedad de convolución de la transformada de Laplace:
+		      \[
+			      \mathcal{L}\{f * g\}(s) = \mathcal{L}\{f\}(s) \cdot \mathcal{L}\{g\}(s) = \Gamma(x)\Gamma(y)s^{-x-y}.
+		      \]
+
+		      Ahora calculamos la convolución \( (f * g)(t) \):
+		      \[
+			      (f * g)(t) = \int_0^t \tau^{x-1} (t - \tau)^{y-1} e^{-\tau} e^{-(t - \tau)} \, d\tau = e^{-t} \int_0^t \tau^{x-1} (t - \tau)^{y-1} \, d\tau.
+		      \]
+
+		      Usamos el cambio de variable \( \tau = tu \), \( d\tau = t\,du \), lo que lleva a:
+		      \[
+			      (f * g)(t) = e^{-t} \int_0^1 (tu)^{x-1} (t - tu)^{y-1} t\,du = e^{-t} t^{x + y - 1} \int_0^1 u^{x-1}(1 - u)^{y-1} du.
+		      \]
+
+		      La integral que aparece es precisamente la función beta:
+		      \[
+			      \int_0^1 u^{x-1}(1 - u)^{y-1} du = B(x, y).
+		      \]
+		      Por tanto, obtenemos:
+		      \[
+			      (f * g)(t) = e^{-t} t^{x + y - 1} B(x, y).
+		      \]
+
+		      Apliquemos ahora la transformada de Laplace de \( f * g \):
+		      \[
+			      \mathcal{L}\{f * g\}(s) = \int_0^\infty e^{-st} e^{-t} t^{x + y - 1} B(x, y)\,dt = B(x, y) \int_0^\infty t^{x + y - 1} e^{-(s+1)t} dt.
+		      \]
+
+		      Esta última integral es:
+		      \[
+			      \int_0^\infty t^{x + y - 1} e^{-(s+1)t} dt = \Gamma(x + y)(s + 1)^{-(x + y)}.
+		      \]
+
+		      Entonces:
+		      \[
+			      \mathcal{L}\{f * g\}(s) = B(x, y)\Gamma(x + y)(s + 1)^{-(x + y)}.
+		      \]
+
+		      Por otro lado, recordamos que:
+		      \[
+			      \mathcal{L}\{f * g\}(s) = \Gamma(x)\Gamma(y)s^{-(x + y)}.
+		      \]
+
+		      Comparando las dos expresiones de \( \mathcal{L}\{f * g\}(s) \) con el cambio \( s \to s + 1 \), se concluye que:
+		      \[
+			      \Gamma(x)\Gamma(y) = B(x, y)\Gamma(x + y) \quad \Rightarrow \quad B(x, y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)}.
+		      \]
+	      \end{myproof}
+
+	\item \textbf{Para enteros positivos:} Si \( x, y \in \mathbb{N} \), entonces:
+	      \[
+		      B(x, y) = \frac{(x-1)!(y-1)!}{(x + y - 1)!}
+	      \]
+	      \begin{myproof}
+		      Si \( x, y \in \mathbb{N} \), entonces por definición de factorial en términos de Gamma:
+		      \[
+			      \Gamma(n) = (n-1)! \quad \text{para } n \in \mathbb{N}.
+		      \]
+		      Aplicando la fórmula \( B(x,y) = \dfrac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)} \), obtenemos:
+		      \[
+			      B(x, y) = \frac{(x-1)!(y-1)!}{(x + y - 1)!}.
+		      \]
+	      \end{myproof}
+	\item \textbf{Propiedad de recurrencia:}
+	      \[
+		      B(x+1, y) = \frac{x}{x + y} B(x, y)
+	      \]
+	      \begin{myproof}
+		      Recordamos la relación con la función gamma:
+		      \[
+			      B(x, y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)}.
+		      \]
+		      Entonces:
+		      \[
+			      B(x+1, y) = \frac{\Gamma(x+1)\Gamma(y)}{\Gamma(x + y + 1)}.
+		      \]
+		      Usamos la propiedad funcional de la gamma: \( \Gamma(z+1) = z\Gamma(z) \), aplicada a \( x+1 \) y \( x + y + 1 \):
+		      \[
+			      \Gamma(x+1) = x\Gamma(x), \quad \Gamma(x + y + 1) = (x + y)\Gamma(x + y).
+		      \]
+		      Por tanto:
+		      \[
+			      B(x+1, y) = \frac{x \Gamma(x)\Gamma(y)}{(x + y)\Gamma(x + y)} = \frac{x}{x + y} \cdot \frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)} = \frac{x}{x + y} B(x, y).
+		      \]
+	      \end{myproof}
+
+\end{itemize}
+
+\section{Ejemplos Resueltos}
+
+\begin{example}
+	Calcular \( B(3,2) \).
+
+	Usamos la relación con la función gamma:
+	\[
+		B(3,2) = \frac{\Gamma(3)\Gamma(2)}{\Gamma(5)} = \frac{2! \cdot 1!}{4!} = \frac{2 \cdot 1}{24} = \frac{1}{12}.
+	\]
+\end{example}
+
+\begin{example}
+	Calcular \( B\left(\frac{1}{2}, \frac{1}{2}\right) \).
+
+	Sabemos que \( \Gamma(1/2) = \sqrt{\pi} \), entonces:
+	\[
+		B\left(\frac{1}{2}, \frac{1}{2}\right) = \frac{\Gamma(1/2)^2}{\Gamma(1)} = \frac{\pi}{1} = \pi.
+	\]
+\end{example}
+
+\section{Propiedades Avanzados}
+\mprop{}{
+	\[
+		B(x, y) = \int_0^\infty \frac{t^{x-1}}{(1 + t)^{x+y}} \dd{t}
+	\]
+}
+\begin{myproof}
+	Partimos de la definición de la función beta:
+	\[
+		B(x, y) = \int_0^1 t^{x-1}(1 - t)^{y-1} \dd{t}, \quad x, y > 0.
+	\]
+	Hacemos el cambio de variable \( t = \frac{u}{1+u} \), con \( u \in (0, \infty) \). Entonces:
+	\[
+		\dd{t} = \frac{1}{(1+u)^2} \dd{u}, \quad 1 - t = \frac{1}{1+u}.
+	\]
+	Además:
+	\[
+		t^{x-1} = \left( \frac{u}{1+u} \right)^{x-1}, \quad (1 - t)^{y-1} = \left( \frac{1}{1+u} \right)^{y-1}.
+	\]
+	Por lo tanto:
+	\begin{align*}
+		B(x, y) & = \int_0^\infty \left( \frac{u}{1+u} \right)^{x-1} \left( \frac{1}{1+u} \right)^{y-1} \cdot \frac{1}{(1+u)^2} \dd{u} \\
+		        & = \int_0^\infty \frac{u^{x-1}}{(1+u)^{x + y}} \dd{u}.
+	\end{align*}
+	Así se obtiene la identidad deseada.
+\end{myproof}
+
+\mprop{}{
+	\[
+		B(x, y) = 2 \int_0^{\pi/2} \cos^{2x-1}(t) \sin^{2y-1}(t) \dd{t}
+	\]
+}
+\begin{myproof}
+	Partimos nuevamente de la definición:
+	\[
+		B(x, y) = \int_0^1 t^{x-1}(1 - t)^{y-1} \dd{t}.
+	\]
+	Usamos el cambio de variable \( t = \sin^2 \theta \), con \( \theta \in (0, \pi/2) \). Entonces:
+	\[
+		\dd{t} = 2\sin\theta\cos\theta \dd{\theta}, \quad 1 - t = \cos^2\theta.
+	\]
+	Además:
+	\[
+		t^{x-1} = \sin^{2x - 2} \theta, \quad (1 - t)^{y-1} = \cos^{2y - 2} \theta.
+	\]
+	Sustituyendo:
+	\begin{align*}
+		B(x, y) & = \int_0^{\pi/2} \sin^{2x - 2}(\theta) \cos^{2y - 2}(\theta) \cdot 2\sin(\theta)\cos(\theta) \dd{\theta} \\
+		        & = 2 \int_0^{\pi/2} \sin^{2x - 1}(\theta) \cos^{2y - 1}(\theta) \dd{\theta}.
+	\end{align*}
+	Así se obtiene la identidad.
+\end{myproof}
+
+\subsection{Ejercicios resueltos}
+\ex{	Verifique que para \( m, n \in \mathbb{N} \):}{
+	\[
+		B(m,n) = \left( \frac{1}{m} + \frac{1}{n} \right) \binom{m+n}{m}^{-1}
+	\]
+	\resolucion
+	Recordamos que para \( m, n \in \mathbb{N} \), se tiene:
+	\[
+		B(m, n) = \frac{(m-1)!(n-1)!}{(m+n-1)!}.
+	\]
+	También recordamos que el coeficiente binomial se expresa como:
+	\[
+		\binom{m+n}{m} = \frac{(m+n)!}{m! \, n!}.
+	\]
+	Entonces:
+	\begin{align*}
+		\left( \frac{1}{m} + \frac{1}{n} \right) \binom{m+n}{m}^{-1}
+		 & = \left( \frac{1}{m} + \frac{1}{n} \right) \cdot \frac{m! \, n!}{(m+n)!} \\
+		 & = \left( \frac{n + m}{mn} \right) \cdot \frac{m! \, n!}{(m+n)!}          \\
+		 & = \frac{(m+n) \cdot m! \cdot n!}{m n (m+n)!}.
+	\end{align*}
+	Ahora simplificamos la expresión de \( B(m, n) \):
+	\[
+		B(m, n) = \frac{(m-1)!(n-1)!}{(m+n-1)!} = \frac{m! \cdot n!}{m \cdot n \cdot (m+n-1)!}.
+	\]
+	Y como \( (m+n)! = (m+n)(m+n-1)! \), entonces:
+	\[
+		\frac{(m+n) \cdot m! \cdot n!}{m n (m+n)!} = \frac{m! \cdot n!}{m n (m+n-1)!} = B(m, n).
+	\]
+	Por tanto, se verifica la identidad:
+	\[
+		B(m,n) = \left( \frac{1}{m} + \frac{1}{n} \right) \binom{m+n}{m}^{-1}.
+	\]
+}
+
+\subsection{Ejercicios Propuestos}
+
+\begin{enumerate}
+
+	\item Pruebe la siguiente integral:
+	      \[
+		      \int_0^\infty \frac{x^{u+1}}{(1+x^2)^2} \, \dd{x}= \frac{u\pi}{4\sin\left(\frac{\pi u}{2}\right)}
+	      \]
+
+	\item Calcular:
+	      \[
+		      \int_0^\infty \frac{\, \dd{x}}{(x^n + 1)^{m+1}}, \quad n \in \mathbb{N},\; m > -1.
+	      \]
+	      (Sugerencia: usar cambio de variable y función beta.)
+
+	\item Evaluar la siguiente integral con raíz cuártica:
+	      \[
+		      \int_0^1 \frac{x^n}{\sqrt{1 - x^4}} \, \dd{x}, \quad n \in \mathbb{N}.
+	      \]
+	      (Sugerencia: considerar cambio \( x^4 = t \).)
+
+	\item Verificar la identidad:
+	      \[
+		      \int_0^\infty e^{-(k + k^2/x)} \frac{\, \dd{x}}{\sqrt{x}} = \sqrt{\pi} e^{-2k}, \quad k > 0.
+	      \]
+	      (Sugerencia: cambiar variable a \( x = k t \).)
+
+	\item Sea \( i \) la unidad imaginaria. Evaluar la siguiente integral de valor complejo:
+	      \[
+		      \int_0^{\frac{\pi}{2}} \tan^i(x) \, \dd{x}.
+	      \]
+
+	\item Calcular:
+	      \[
+		      \int_{-\infty}^{\infty} \left(1+\frac{x^2}{2025}\right)^{-1013} \dd{x}
+	      \]
+	      (Sugerencia: usar identidad con la función beta.)
+
+	\item Evaluar el siguiente límite en términos de la función beta:
+	      \[
+		      \lim_{\varepsilon \to 0^+} \int_\varepsilon^{1-\varepsilon} x^{p-1}(1-x)^{q-1} \dd{x}, \quad \text{para } p, q > 0.
+	      \]
+
+
+
+	\item Sea \( a > 0 \). Demuestre que:
+	      \[
+		      \int_0^a \frac{x^{p-1}}{(1 - \frac{x}{a})^{1-p}} \dd{x} = a^p B(p, 1 - p), \quad 0 < p < 1.
+	      \]
+
+	\item Evaluar la integral:
+	      \[
+		      \int_0^\pi \sin^{2a - 1}(x) \cos^{2b - 1}(x) \dd{x}, \quad a, b > 0.
+	      \]
+	      (Sugerencia: cambiar a mitad de período y conectar con la función beta.)
+
+	\item Verifique que:
+	      \[
+		      \int_0^1 x^{m-1} \ln(1 - x) \dd{x} = -\frac{1}{m^2}, \quad m \in \mathbb{N}.
+	      \]
+	      (Usar representación en serie o derivar respecto a un parámetro en \( B(x,y) \).)
+
+	\item Sea \( f(a) := \int_0^1 \frac{x^a - 1}{\log x} \dd{x} \). Mostrar que:
+	      \[
+		      f(a) = \log B(a + 1, 1) = \log\left( \frac{1}{a + 1} \right).
+	      \]
+
+	\item Evaluar:
+	      \[
+		      \int_0^1 x^p (1 - x)^q \log x \dd{x}, \quad p, q > 0.
+	      \]
+	      (Sugerencia: derivar \( B(p+1, q+1) \) respecto a \( p \).)
+
+
+
+
+	\item Sea \( \alpha > 0 \). Evaluar:
+	      \[
+		      \int_0^\infty \frac{x^{\alpha - 1}}{(1 + x^2)^{\alpha + \frac{1}{2}}} \dd{x}.
+	      \]
+	      (Sugerencia: usar la identidad \( B(x,y) = 2\int_0^{\pi/2} \sin^{2x-1}(\theta) \cos^{2y-1}(\theta) \dd{\theta} \).)
+	\item Evalúe si es correcto la igualdad,
+	      $$
+		      \lim\limits_{x \to 1^{-}} \sqrt{1-x} (1+x+x^4+x^9+x^{16}+x^{25}+\cdots) = \frac{\sqrt{\pi}}{2}
+	      $$
+	\item Evalúe si es correcto la igualdad
+	      $$
+		      \sum_{a=0}^{n} \binom{n}{a} B(a+1, n-a+1) = 1
+	      $$
+	\item Calcule y restringe $s$,
+	      $$
+		      \int_{0}^{2} x^{2s} (4-x^2)^{-1//2} \dd{x}
+	      $$
+	\item Evalúe,
+	      $$
+		      \int_{0}^{\pi/(2a)} \tan(ax) \dd{x}
+	      $$
+
+	\item
+	      $$
+		      \sum_{k=0}^{n} \binom{n}{k} \frac{(-1)^{n+k}}{2n+1-k} = \frac{1}{(2n+1) \binom{2n}{n}}
+	      $$
+
+\end{enumerate}
+
+\section{Función Beta incompleta}
+
+\dfn{}{
+
+	Sea \( a > 0 \), \( b > 0 \) y \( x \in [0,1] \). La \textbf{función Beta incompleta} se define como:
+	\[
+		B_x(a,b) = \int_0^x t^{a-1}(1 - t)^{b-1} \, dt
+	\]
+}
+
+\subsection{ Propiedades}
+
+\begin{itemize}
+	\item \textbf{Relación con la función Beta:}
+	      \[
+		      B_x(a,b) + B_{1-x}(b, a) = B(a,b)
+	      \]
+
+	\item \textbf{Relación con funciones hipergeométricas:}
+	      \[
+		      B_x(a,b) = \frac{x^a}{a} \, {}_2F_1(a, 1 - b; a+1; x)
+	      \]
+
+	\item \textbf{Relación con la función Gamma:}
+	      \[
+		      B(a,b) = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a + b)}
+		      \quad \text{y} \quad
+		      B_x(a,b) = \int_0^x t^{a-1}(1 - t)^{b-1} dt
+	      \]
+
+	\item \textbf{Derivada respecto a \( x \):}
+	      \[
+		      \frac{d}{dx} B_x(a,b) = x^{a-1}(1 - x)^{b-1}
+		      \quad \Rightarrow \quad
+		      \frac{d}{dx} I_x(a,b) = \frac{x^{a-1}(1 - x)^{b-1}}{B(a,b)}
+	      \]
+\end{itemize}
+
+\subsection{  Ejemplos}
+
+\ex{}{Calcular \( B_{1/2}(2,3) \)}
+
+\begin{solution}
+	\[
+		B_x(a,b) = \int_0^{1/2} t^{2-1}(1 - t)^{3-1} dt = \int_0^{1/2} t(1 - t)^2 dt
+	\]
+	Expandimos:
+	\[
+		(1 - t)^2 = 1 - 2t + t^2 \Rightarrow t(1 - t)^2 = t - 2t^2 + t^3
+	\]
+	\[
+		\int_0^{1/2} (t - 2t^2 + t^3) dt = \left[\frac{t^2}{2} - \frac{2t^3}{3} + \frac{t^4}{4} \right]_0^{1/2}
+	\]
+	\[
+		= \frac{1}{8} - \frac{2}{24} + \frac{1}{64} = \frac{1}{8} - \frac{1}{12} + \frac{1}{64} = \frac{5}{192}
+	\]
+\end{solution}
+
+\subsection{  Ejercicios propuestos}
+
+\begin{enumerate}
+
+	\item  Demuestre que:
+	      \[
+		      B_x(a,b) + B_{1-x}(b,a) = B(a,b)
+	      \]
+
+	\item 	Encuentre \( B_{3/4}(1,2) \) y \( I_{3/4}(1,2) \).
+	\item 	Pruebe que:
+	      \[
+		      \frac{d}{dx} I_x(a,b) = \frac{1}{B(a,b)} x^{a-1}(1 - x)^{b-1}
+	      \]
+	\item 	Usando la relación con la función hipergeométrica, calcule \( B_x(a,b) \) para \( a = 1 \), \( b = 2 \).
+	\item
+	      Evalúe el límite:
+	      \[
+		      \lim_{x \to 1^{-}} I_x(a,b)
+		      \quad \text{y} \quad
+		      \lim_{x \to 0^{+}} I_x(a,b)
+	      \]
+	\item
+	      Pruebe que si \( a, b > 0 \), entonces \( I_x(a,b) \) es estrictamente creciente en \( x \in (0,1) \).
+\end{enumerate}
+
